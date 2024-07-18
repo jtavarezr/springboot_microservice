@@ -3,16 +3,17 @@ services:
   ### postgres database for inventory
   db-inventory:
     container_name: db-inventory
-    image: postgres:16
+    image: mysql:8.0.33
     restart: unless-stopped
     environment:
-      POSTGRES_DB: ms_inventory
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: P@$$w0rd
+      MYSQL_DATABASE: ms_inventory
+      MYSQL_USER: jtavarez
+      MYSQL_PASSWORD: P@$$w0rd
+      MYSQL_ROOT_PASSWORD: root
     ports:
-      - 5431:5432  # Cambié el puerto del contenedor a 5432 para que coincida con el puerto por defecto
+      - 3307:3306  # Cambié el puerto del contenedor a 3306 para que coincida con el puerto por defecto
     expose:
-      - 5432  # Cambié el puerto expuesto a 5432 para que coincida con el puerto por defecto
+      - 3307  # Cambié el puerto expuesto a 5432 para que coincida con el puerto por defecto
 
   ### MySQL database for Orders
   db-orders:
@@ -27,7 +28,7 @@ services:
     ports:
       - 3308:3306  # Cambié el puerto del contenedor a 3306 para que coincida con el puerto por defecto
     expose:
-      - 3306  # Cambié el puerto expuesto a 3306 para que coincida con el puerto por defecto
+      - 3308  # Cambié el puerto expuesto a 3306 para que coincida con el puerto por defecto
 
   db-products:
     container_name: db-products
@@ -39,6 +40,6 @@ services:
       MYSQL_PASSWORD: P@$$w0rd
       MYSQL_ROOT_PASSWORD: root
     ports:
-      - 3307:3306  # Puerto del contenedor mapeado al puerto de host
+      - 3309:3306  # Puerto del contenedor mapeado al puerto de host
     expose:
-      - 3307  # Puerto expuesto
+      - 3309  # Puerto expuesto
